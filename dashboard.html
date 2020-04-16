@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>COVID-19 DASHBOARD</title>
+        <!-- <script type="text/javascript" src="https://api.covid19india.org/data.json"></script> -->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body >
+        <!-- <div class="grid_container"> -->
+            <!-- <div class="item_1">
+                <img src="./virus.svg" style="height: 35px;width:35px;margin-left: 260px;margin-top: 10px; float: left;">
+            </div>
+            <div class="item_2" style="height: 80px;"></div>
+            <div class="item_3">3</div>
+            <!-- <div class="item_4">4</div> -->
+            
+        <!-- </div> -->
+
+        <div style="width: 100%;height: 50px;background-color: rgb(238, 226, 226);transform: scale(1.5,1.5);float:none;">
+            <img src="./virus.svg" style="height: 35px;width:35px;margin-left: 260px;margin-top: 10px; float: left;">
+            <ul >
+                <span style=" margin-left: 30px;">
+                <a href="#" style="margin-left: 25px;margin-top: 40px;">Home</a>
+                <a href="#">What is Covid-19</a>
+                <a href="#">Symtoms</a>
+                </span>
+            </ul>
+        </div>
+        <div style="width:600px;height:120px; background-color:transparent;border-radius: 6px;border-color: grey ;border:1px solid gray;margin-top: 28px;float: left;">
+            <div class="sub_div">
+            <p style="color: red; margin-left: 50px;font-size: 30px;margin-top: 10px;" class="confirmcases"></p>
+            <h3 style="margin-top: 0px;margin-left: 40px;float: left; color:gray">Confirmed</h3>
+            </div>
+            <div class="sub_div">
+            <span><p style="color:green; margin-left: 50px;font-size: 30px;margin-top: 0px;" class="recovercases"></p></span>
+            <h3 style="margin-top: 0px;margin-left: 40px;float: left;color: gray;">Recover</h3>
+        </div>
+        <div class="sub_div">
+            <span><p style="color:gray; margin-left: 70px;font-size: 30px;margin-top: 0px;" class="totaldeceased"></p></span>
+            <h3 style="margin-top: 0px;margin-left: 40px;float: left;color: gray;">Death</h3>
+        </div>
+        </div>
+        <div style="height: 120;width: 250px;margin-left:700px;margin-top: 28px;background-color:transparent;background-color:transparent;border-radius: 6px;border-color: grey ;border:1px solid gray;" >
+            <span><p style="color:gray; margin-left: 70px;font-size: 30px;margin-top: 0px;" class="recoveryrate"></p></span>
+            <h3 style="margin-top: 0px;margin-left: 40px;float: left;color: gray;">Recovery Rate</h3>
+        </div>
+
+    <script>
+    $.getJSON('https://api.covid19india.org/data.json', function(data) {
+        var count=0;
+        var conf,rec,dea;
+        var len=(`${data.cases_time_series.length}`)
+        for(var i=0; i<len; i++){
+        var Confirmed = `${data.cases_time_series[i].totalconfirmed}`
+        var recover =  `${data.cases_time_series[i].totalrecovered}`
+        var decease = `${data.cases_time_series[i].totaldeceased}`
+        $(".confirmcases").html(Confirmed);
+        $(".recovercases").html(recover);
+        $(".totaldeceased").html(decease)
+        conf=Confirmed;rec=recover;dea=decease;
+        }
+        var recoveryrate =(rec/conf)*100
+        $(".recoveryrate").html(recoveryrate.toFixed(1));
+        
+        
+        
+    });
+    </script>
+    </body>
+</html>
